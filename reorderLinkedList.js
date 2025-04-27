@@ -13,5 +13,34 @@ class Solution {
    * @param {ListNode} head
    * @return {void}
    */
-  reorderList(head) {}
+  reorderList(head) {
+    let slow = head,
+      fast = head.next;
+
+    while (fast && fast.next) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+
+    let second = slow.next;
+    let prev = (slow.next = null);
+
+    while (second !== null) {
+      let temp = second.next;
+      second.next = prev;
+      prev = second;
+      second = temp;
+    }
+
+    let first = head;
+    second = prev;
+    while (second !== null) {
+      let temp1 = first.next,
+        temp2 = second.next;
+      first.next = second;
+      second.next = temp1;
+      first = temp1;
+      second = temp2;
+    }
+  }
 }
