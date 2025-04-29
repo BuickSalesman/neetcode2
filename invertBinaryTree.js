@@ -14,5 +14,18 @@ class Solution {
    * @param {TreeNode} root
    * @return {TreeNode}
    */
-  invertTree(root) {}
+  invertTree(root) {
+    if (root === null) {
+      return null;
+    }
+
+    let remp = root.left;
+    root.left = root.right;
+    root.right = remp;
+
+    this.invertTree(root.left);
+    this.invertTree(root.right);
+
+    return root;
+  }
 }
