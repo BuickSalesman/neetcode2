@@ -15,5 +15,15 @@ class Solution {
    * @param {TreeNode} q
    * @return {boolean}
    */
-  isSameTree(p, q) {}
+  isSameTree(p, q) {
+    if (p === null && q === null) {
+      return true;
+    }
+
+    if (p && q && p.val === q.val) {
+      return this.isSameTree(p.left, q.left) && this.isSameTree(p.right, q.right);
+    } else {
+      return false;
+    }
+  }
 }
