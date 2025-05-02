@@ -15,5 +15,16 @@ class Solution {
    * @param {number} k
    * @return {number}
    */
-  kthSmallest(root, k) {}
+  kthSmallest(root, k) {
+    let arr = [];
+    this.dfs(root, arr);
+    return arr[k - 1];
+  }
+
+  dfs(node, arr) {
+    if (!node) return;
+    this.dfs(node.left, arr);
+    arr.push(node.val);
+    this.dfs(node.right, arr);
+  }
 }
